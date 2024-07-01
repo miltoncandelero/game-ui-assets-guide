@@ -124,13 +124,14 @@ Exported assets must follow the [CEV (Context, Element, Variant) standard](https
 - All font files needed must be provided along with their variants.
 - The text style must be explained. e.g., font style, color values, gradient stops, stroke width, shadow opacity and angle, etc.
     - If a text style is too complex for the game engine to replicate, a bitmap font will be requested with instructions on how to build it.
+- Displaying text in a videogame is not as simple as one might think. Depending on your game engine, you will have limitations on what styles you can apply. If you need to perfectly match some style, you will need to either rasterize the full text as an asset or create a bitmap font.
 
 | Bitmap Font | SDF Font | Needs an asset |
 | :--: | :--: | :--: |
 | ![Gold font](./images/bitmap-font.png) | ![sdf font](./images/sdf-font.png) | ![very stylized text](./images/too-stylized.png) |
 | This style will probably need a bitmap font since recreating it in engine can be very challenging | This is how an SDF font looks like. It looks like a blurry text but the code will know how to convert it to sharp text | In this case, the text is too stylized to try to recreate with text. This will probably need to be exported as an image asset and localization will have a hard time finding a replacement for the play on shapes between the A and the V |
 
-- Displaying text in a videogame is not as simple as one might think. Depending on your game engine, you will have limitations on what styles you can apply. If you need to perfectly match some style, you will need to either rasterize the full text as an asset or create a bitmap font.
+- Rich text will be limited by the game engine used.
 
 | ![Animal Crossing](./images/animal-crossing.png) | ![Text Effects](./images/moving-text.gif) |
 | :---: | :---: |
