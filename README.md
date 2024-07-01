@@ -82,6 +82,20 @@ Exported assets must follow the [CEV (Context, Element, Variant) standard](https
 - Animations must be explained or showcased in animation storyboards if they are too complex.
 - When sending subtle corrections to a mockup, please include another mockup with markups explaining what changed. Don't assume programmer eyes can spot the difference.
 
+# Safe Areas
+
+## Glosary
+- **Notch**: Originally, a cutout on one of the device's edges (usually the uppermost one) but can also include rounded screen corners.
+- **Safe Area**: A rectangle that defines the area of the screen that isn't covered by a navigation bar, top status bar, rounded corners, or camera cutouts.
+
+## Guidelines
+- Safe area is defined by the game engine, per device.
+- When designing elements that should sit flush against the edge of the screen, consider how the element should adjust to the safe area.
+    - Buttons and dialogs are usually offset to avoid ending up in a covered, unreachable space.
+    - Sidebars, bottom toolbars, toast notifications, and pull-down menus usually bleed the background while the content respects the safe area.
+    - Scrims, overlays, and shades usually ignore the safe area since there are neither useful nor interactive elements.
+- Any custom behaviour or interaction with the safe area and notches should be explained.
+
 # Text and Fonts
 
 ## Glosary
