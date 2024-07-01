@@ -4,6 +4,9 @@ This is a guide for UI/UX artists and designers when they need to send their exp
 
 Most of the things you will find here might seem "common sense", but it has happened before that my common sense and your common sense are not exactly aligned.
 
+**This document is not set in stone!**  
+Any comments, suggestions, rants, insults, tweaks, ideas, anything are welcome!
+
 # Foreword
 Keep in mind that the more "Flat", "Material", "Minimalistic" or "Neuromorphic" your design is, the easier it will be to program.
 An "Skewomorphic" UI design (where elements resemble real-life or in-universe objects) is harder to program and will require careful communication with the programmers.
