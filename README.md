@@ -7,6 +7,12 @@ Most of the things you will find here might seem "common sense", but it has happ
 # Foreword
 Keep in mind that the more "Flat", "Material", "Minimalistic" or "Neuromorphic" your design is, the easier it will be to program.
 An "Skewomorphic" UI design (where elements resemble real-life or in-universe objects) is harder to program and will require careful communication with the programmers.
+A "Diegetic" UI design (where the elements live in the same universe as the characters of your game) adds another layer of complexity.
+
+| Diegetic                                                                                                   | Skewomorphic                                                                                                                                                                                        | Neuromorphic                                                                                                                                                        |
+|:----:|:----:|:----:|
+| ![Fallout 4](./images/fallout4.png)                                                                                                          | ![Fallout 1](./images/fallout-1.webp)                                                                                                                                                                                                   | ![Baldur's Gate 3](./images/baldurs3.png)                                                                                                                                                                   |
+| Fallout 4 <br> The UI elements exist in universe, your character can see and interact with the UI of your game. | Fallout 1 <br> Your UI elements are representation of objects that can be found in your universe (paper, red plunger buttons, etc) however it is not something your character can see and interact with. | Baldur's Gate 3 <br> It doesn't have to look like an excel spreadsheet, you can still have fancy icons and borders but the elements are not based on in-universe objects |
 
 # Assets
 
@@ -17,6 +23,11 @@ An "Skewomorphic" UI design (where elements resemble real-life or in-universe ob
 ## Exporting
 - If an element is meant to cover a variable aspect ratio, a [9-slices](https://en.wikipedia.org/wiki/9-slice_scaling) can be used, otherwise, the asset will be scaled to fit.
     - A special case of a 9-slice is a 3-slice, commonly used for progress bars and sliders.
+
+|![9-Slice example](./images/9-slice.png)|
+|:----:|
+|Top: Stretching, corners are distorted. Bottom: 9-slice scaling, corners aren't distorted.|
+
 - While exporting, keep in mind that empty space (transparent) around the element will be considered a part of it. This can be used to facilitate item alignment in Fixed and Adaptative designs, but it can backfire on Responsive designs. Use with care.
 - Assets meant to work together in the same context should have a cohesive size in pixels.
 
@@ -102,7 +113,7 @@ Exported assets must follow the [CEV (Context, Element, Variant) standard](https
 - **Font**: Generaly refers to the "Font Face" or the "name" of the font.
 - **Font File**: The vectorial font file, e.g., `ttf`, `otf`, `woff`. While some engines can rasterize vectorial fonts "on the fly" most bake them into a Bitmap Font.
     - **Bitmap Font**: A rasterized image with each glyph that the font needs. The program will use this to "stamp" each character and make text. Creating this kind of asset is usually done automatically by your engine or a tool, but it can be done manually if respecting a particular style is important.
-    - **SDF Font**: A special kind of bitmap font allowing for *vector-like* appearance (never pixelates) but limits the styling and effects that can be applied to it. This method won't work for grunge (noisy) fonts.
+    - **SDF Font**: A special kind of bitmap font allowing for *vector-like* appearance (never pixelates) but limits the styling and effects that can be applied to it. This method won't work for grunge (noisy) fonts.\
 - **Font Variant**: Refers to different styles or versions of a font, e.g., weight (light, regular, medium, bold, extra bold, black), width (condensed, narrow, regular, expanded), style (italic, oblique, upright), and caps (small caps, all caps).
 - **Text Style**: Everything that affects how the text is displayed. Not only the font face but also the variant, color, and effects.
 - **Alternate Characters**: Some fonts have different glyphs to depict the same character. Most game engines are not prepared to show these kinds of fonts.
@@ -113,8 +124,23 @@ Exported assets must follow the [CEV (Context, Element, Variant) standard](https
 - All font files needed must be provided along with their variants.
 - The text style must be explained. e.g., font style, color values, gradient stops, stroke width, shadow opacity and angle, etc.
     - If a text style is too complex for the game engine to replicate, a bitmap font will be requested with instructions on how to build it.
+
+| Bitmap Font | SDF Font | Needs an asset |
+| :--: | :--: | :--: |
+| ![Gold font](./images/bitmap-font.png) | ![sdf font](./images/sdf-font.png) | ![very stylized text](./images/too-stylized.png) |
+| This style will probably need a bitmap font since recreating it in engine can be very challenging | This is how an SDF font looks like. It looks like a blurry text but the code will know how to convert it to sharp text | In this case, the text is too stylized to try to recreate with text. This will probably need to be exported as an image asset and localization will have a hard time finding a replacement for the play on shapes between the A and the V |
+
 - Displaying text in a videogame is not as simple as one might think. Depending on your game engine, you will have limitations on what styles you can apply. If you need to perfectly match some style, you will need to either rasterize the full text as an asset or create a bitmap font.
+
+| ![Animal Crossing](./images/animal-crossing.png) | ![Text Effects](./images/moving-text.gif) |
+| :---: | :---: |
+| Rich text can be used to change the color of the text | But also includes per-glyph effects |
+
 - For responsive layouts, a minimum and maximum text size must be specified.
+
+|![Example of wrongly sized text](./images/text-size.png)|
+| :---: |
+| Finding bad examples sometimes is harder than finding good examples. <br> Here the text adapts to the space available and flows properly (doesn't get cut outside screen) but that doesn't mean that any font size works. |
 
 # Localization and Internationalization
 
@@ -124,6 +150,7 @@ Exported assets must follow the [CEV (Context, Element, Variant) standard](https
 
 ## Guidelines
 - Remember that some supported languages might have longer or shorter texts.
+    - Data on text expansion https://www.kwintessential.co.uk/blog/translation/translation-text-expansion-how-it-affects-design-2
 - Fonts will need to support glyphs for supported languages.
 - Bitmap fonts will become increasingly complex as more languages are supported.
 - Any text that was converted to an image will need its corresponding localized image.
